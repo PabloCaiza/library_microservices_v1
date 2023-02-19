@@ -1,0 +1,41 @@
+plugins {
+    id 'war'
+    id 'io.openliberty.tools.gradle.Liberty' version '3.5.2'
+    id "io.freefair.lombok" version "6.6.2"
+
+}
+
+version '1.0-SNAPSHOT'
+group 'com.distribuida'
+
+sourceCompatibility = 17
+targetCompatibility = 17
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // provided dependencies
+    providedCompile 'jakarta.platform:jakarta.jakartaee-api:9.1.0' 
+    providedCompile 'org.eclipse.microprofile:microprofile:5.0'
+    implementation 'org.mongodb:mongo-java-driver:3.12.12'
+
+
+}
+
+liberty{
+    server{
+        packageLiberty{
+            include="runnable"
+
+        }
+
+    }
+
+}
+
+clean.dependsOn 'libertyStop'
