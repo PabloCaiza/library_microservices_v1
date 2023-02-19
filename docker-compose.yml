@@ -23,7 +23,7 @@ services:
       timeout: 10s
       retries: 5
   books-service:
-    image: pjcaiza/app-books:1.0.0
+    image: ianyangmax/app-books:1.0.0
     expose:
       - 9080
     environment:
@@ -43,7 +43,7 @@ services:
       - "traefik.http.middlewares.books.stripprefix.prefixes=/app1"
       - "traefik.http.routers.books.middlewares=books"
   authors-service:
-    image: pjcaiza/app-authors:1.0.0
+    image: ianyangmax/app-authors:1.0.0
     expose:
       - 9090
     environment:
