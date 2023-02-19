@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.distribuida.app-book.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.distribuida.app-book.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library_microservices_v1.app-book.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library_microservices_v1.app-book.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library_v1.app-book.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library_v1.app-book.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/test.library_microservices_v1.app-book.main.iml" filepath="$PROJECT_DIR$/.idea/modules/test.library_microservices_v1.app-book.main.iml" />
     </modules>
   </component>
 </project>
