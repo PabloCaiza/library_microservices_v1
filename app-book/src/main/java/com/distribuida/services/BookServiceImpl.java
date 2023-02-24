@@ -8,7 +8,10 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.eclipse.microprofile.faulttolerance.Retry;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +28,13 @@ public class BookServiceImpl implements BookService {
         mongoCollection = mongoDatabase.getCollection("books");
     }
 
+
+    @Timeout(value = 1,unit = ChronoUnit.SECONDS)
+    @Retry(retryOn = Exception.class,maxRetries = 4,
+    maxDuration = 10,
+    durationUnit = ChronoUnit.SECONDS,
+    delay = 1,
+    delayUnit = ChronoUnit.SECONDS)
     @Override
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<>();
@@ -44,6 +54,12 @@ public class BookServiceImpl implements BookService {
         return books;
     }
 
+    @Timeout(value = 1,unit = ChronoUnit.SECONDS)
+    @Retry(retryOn = Exception.class,maxRetries = 4,
+            maxDuration = 10,
+            durationUnit = ChronoUnit.SECONDS,
+            delay = 1,
+            delayUnit = ChronoUnit.SECONDS)
     @Override
     public void createBook(Book book) {
         Document newBook = new Document();
@@ -54,6 +70,12 @@ public class BookServiceImpl implements BookService {
         mongoCollection.insertOne(newBook);
     }
 
+    @Timeout(value = 1,unit = ChronoUnit.SECONDS)
+    @Retry(retryOn = Exception.class,maxRetries = 4,
+            maxDuration = 10,
+            durationUnit = ChronoUnit.SECONDS,
+            delay = 1,
+            delayUnit = ChronoUnit.SECONDS)
     @Override
     public Book getBookById(ObjectId objectId) {
         Document query = new Document("_id", objectId);
@@ -68,7 +90,12 @@ public class BookServiceImpl implements BookService {
                 ).first();
 
     }
-
+    @Timeout(value = 1,unit = ChronoUnit.SECONDS)
+    @Retry(retryOn = Exception.class,maxRetries = 4,
+            maxDuration = 10,
+            durationUnit = ChronoUnit.SECONDS,
+            delay = 1,
+            delayUnit = ChronoUnit.SECONDS)
     @Override
     public void updateBook(ObjectId objectId, Book book) {
         Document query=new Document("_id",objectId);
@@ -82,7 +109,12 @@ public class BookServiceImpl implements BookService {
 
 
     }
-
+    @Timeout(value = 1,unit = ChronoUnit.SECONDS)
+    @Retry(retryOn = Exception.class,maxRetries = 4,
+            maxDuration = 10,
+            durationUnit = ChronoUnit.SECONDS,
+            delay = 1,
+            delayUnit = ChronoUnit.SECONDS)
     @Override
     public void delete(ObjectId id) {
         Document query=new Document("_id",id);
